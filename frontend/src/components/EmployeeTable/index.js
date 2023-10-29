@@ -42,6 +42,17 @@ export default function EmployeeTable() {
         setEditEmployee(null);
     }
 
+    function handleAddEmployee() {
+        const newEmployee = {
+            "id": employees.length + 1,
+            "firstName": "",
+            "lastName": "",
+            "salary": null
+        }
+        setEmployees([...employees, newEmployee]);
+        setEditEmployee(newEmployee)
+    }
+
     return (
         <>
         <h1>EMPLOYEES</h1>
@@ -62,7 +73,7 @@ export default function EmployeeTable() {
                     }
                 })
             }
-            <EmployeeRowAdd />
+            <EmployeeRowAdd handleAddEmployee={handleAddEmployee}/>
         </ul>
         <hr />
         </>

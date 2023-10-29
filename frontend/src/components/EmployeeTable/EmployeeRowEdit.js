@@ -15,9 +15,9 @@ export default function EmployeeRowEdit({employee, handleSubmitEdit, handleCance
 
     return (
         <li className="grid grid-cols-4">
-                <input type="text" defaultValue={employee.firstName} ref={firstNameRef}/>
-                <input type="text" defaultValue={employee.lastName} ref={lastNameRef}/>
-                <input type="number" defaultValue={employee.salary} ref={salaryRef}/>
+                <input type="text" placeholder="First Name" defaultValue={employee.firstName} ref={firstNameRef}/>
+                <input type="text" placeholder="Last Name" defaultValue={employee.lastName} ref={lastNameRef}/>
+                <input type="number" placeholder="Salary" defaultValue={employee.salary} ref={salaryRef}/>
             <span>
                 <button onClick={() => handleSubmitEdit(employee, getFormData())}>Submit</button>
                 <button onClick={() => handleCancelEdit(employee)}>Cancel</button>

@@ -1,10 +1,10 @@
-export default function EmployeeRowAdd() {
+export default function EmployeeRowAdd({handleAddEmployee}) {
 
 
     return (
         <li className="grid grid-cols-4">
         <span className="col-start-4">
-            <button>Add Employee</button>
+            <button onClick={() => handleAddEmployee()}>Add Employee</button>
         </span>
         </li>
     );
