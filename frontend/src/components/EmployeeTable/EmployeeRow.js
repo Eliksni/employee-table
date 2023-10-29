@@ -16,15 +16,16 @@ export default function EmployeeRow({
       <span>{employee.firstName}</span>
       <span>{employee.lastName}</span>
       <span>{formatSalary(employee.salary)}</span>
+
       <span className="flex flex-grow">
         <button
-          className="w-full font-bold bg-orange-600 hover:bg-orange-800 p-1 px-6 my-1 mr-2 rounded-lg text-gray-100"
+          className="w-full font-bold bg-orange-600 transition duration-100 ease-in-out hover:bg-orange-800 p-1 px-6 my-1 mr-2 rounded-lg text-gray-100"
           onClick={() => handleEditEmployee(employee)}
         >
           Edit
         </button>
         <button
-          className="w-full font-bold bg-red-600 hover:bg-red-800 p-1 px-6 my-1 ml-2 rounded-lg text-gray-100"
+          className="w-full font-bold bg-red-600 transition duration-100 ease-in-out hover:bg-red-800 p-1 px-6 my-1 ml-2 rounded-lg text-gray-100"
           onClick={() => handleDeleteEmployee(employee)}
         >
           Delete

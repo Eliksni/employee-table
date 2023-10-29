@@ -41,13 +41,13 @@ export default function EmployeeRowEdit({
       />
       <span className="flex flex-grow">
         <button
-          className="w-full font-bold bg-sky-600 hover:bg-sky-800 p-1 px-6 my-1 mr-2 rounded-lg text-gray-100"
+          className="w-full font-bold bg-sky-600 transition duration-100 ease-in-out hover:bg-sky-800 p-1 px-6 my-1 mr-2 rounded-lg text-gray-100"
           onClick={() => handleSubmitEdit(employee, getFormData())}
         >
           Submit
         </button>
         <button
-          className="w-full font-bold bg-gray-600 hover:bg-gray-800 p-1 px-6 my-1 ml-2 rounded-lg text-gray-100"
+          className="w-full font-bold bg-gray-600 transition duration-100 ease-in-out hover:bg-gray-800 p-1 px-6 my-1 ml-2 rounded-lg text-gray-100"
           onClick={() => handleCancelEdit(employee)}
         >
           Cancel
