@@ -1,4 +1,4 @@
-export default function EmployeeRow({employee, onDelete}) {
+export default function EmployeeRow({employee, handleDeleteEmployee, handleEditEmployee}) {
 
 
     return (
@@ -7,8 +7,8 @@ export default function EmployeeRow({employee, onDelete}) {
             <span>{employee.lastName}</span>
             <span>{employee.salary}</span>
             <span>
-                <button>Edit</button>
-                <button onClick={() => onDelete(employee)}>Delete</button>
+                <button onClick={() => handleEditEmployee(employee)}>Edit</button>
+                <button onClick={() => handleDeleteEmployee(employee)}>Delete</button>
             </span>
         </li>
     );

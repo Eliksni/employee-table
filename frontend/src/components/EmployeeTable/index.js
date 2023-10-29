@@ -1,5 +1,6 @@
 import EmployeeRowHeader from "./EmployeeRowHeader";
 import EmployeeRow from "./EmployeeRow";
+import EmployeeRowEdit from "./EmployeeRowEdit";
 import EmployeeRowAdd from "./EmployeeRowAdd";
 import { useState } from "react";
 
@@ -18,11 +19,27 @@ export default function EmployeeTable() {
             "salary": 70000
         }
     ]);
+    const [editEmployee, setEditEmployee] = useState(null);
 
-    
     function handleDeleteEmployee(employee) {
         const updatedList = employees.filter((emp) => emp.id !== employee.id);
         setEmployees(updatedList);
+    }
+
+    function handleEditEmployee(employee) {
+        setEditEmployee(employee);
+    }
+
+    function handleSubmitEdit(employee, formData) {
+        console.log(formData) 
+        editEmployee.firstName = formData.firstName;
+        editEmployee.lastName = formData.lastName;
+        editEmployee.salary = formData.salary;
+        setEditEmployee(null)
+    }
+
+    function handleCancelEdit(employee) {
+        setEditEmployee(null);
     }
 
     return (
@@ -33,7 +50,16 @@ export default function EmployeeTable() {
             <hr />
             {
                 employees.map((employee) => {
-                    return <EmployeeRow key={employee.id} employee={employee} onDelete={handleDeleteEmployee}/>
+                    if(employee === editEmployee) {
+                        return <EmployeeRowEdit key={employee.id} employee={employee} 
+                        handleSubmitEdit={handleSubmitEdit}
+                        handleCancelEdit={handleCancelEdit}/>
+                    }
+                    else {
+                        return <EmployeeRow key={employee.id} employee={employee} 
+                        handleDeleteEmployee={handleDeleteEmployee}
+                        handleEditEmployee={handleEditEmployee}/>
+                    }
                 })
             }
             <EmployeeRowAdd />
