@@ -1,9 +1,10 @@
 import EmployeeRowHeader from "./EmployeeRowHeader";
 import EmployeeRow from "./EmployeeRow";
 import EmployeeRowAdd from "./EmployeeRowAdd";
+import { useState } from "react";
 
 export default function EmployeeTable() {
-    const employees =[
+    const [employees, setEmployees] = useState([
         {
             "id": 1,
             "firstName": "John",
@@ -16,7 +17,13 @@ export default function EmployeeTable() {
             "lastName": "Smith",
             "salary": 70000
         }
-    ]
+    ]);
+
+    
+    function handleDeleteEmployee(employee) {
+        const updatedList = employees.filter((emp) => emp.id !== employee.id);
+        setEmployees(updatedList);
+    }
 
     return (
         <>
@@ -26,7 +33,7 @@ export default function EmployeeTable() {
             <hr />
             {
                 employees.map((employee) => {
-                    return <EmployeeRow employee={employee} />
+                    return <EmployeeRow key={employee.id} employee={employee} onDelete={handleDeleteEmployee}/>
                 })
             }
             <EmployeeRowAdd />

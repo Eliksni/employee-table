@@ -1,4 +1,6 @@
-export default function EmployeeRow({employee}) {
+export default function EmployeeRow({employee, onDelete}) {
+
+
     return (
         <li className="grid grid-cols-4">
             <span>{employee.firstName}</span>
@@ -6,7 +8,7 @@ export default function EmployeeRow({employee}) {
             <span>{employee.salary}</span>
             <span>
                 <button>Edit</button>
-                <button>Delete</button>
+                <button onClick={() => onDelete(employee)}>Delete</button>
             </span>
         </li>
     );
