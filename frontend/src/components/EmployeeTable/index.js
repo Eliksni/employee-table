@@ -2,25 +2,19 @@ import EmployeeRowHeader from "./EmployeeRowHeader";
 import EmployeeRow from "./EmployeeRow";
 import EmployeeRowEdit from "./EmployeeRowEdit";
 import EmployeeRowAdd from "./EmployeeRowAdd";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function EmployeeTable() {
-  const [employees, setEmployees] = useState([
-    {
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      salary: 55000,
-    },
-    {
-      id: 2,
-      firstName: "Jane",
-      lastName: "Smith",
-      salary: 70000,
-    },
-  ]);
+  const [employees, setEmployees] = useState([]);
   const [editEmployee, setEditEmployee] = useState(null);
   const [newEmployee, setNewEmployee] = useState(null); // Used to track new employee in case of cancel (deletes and doesn't save to DB)
+
+  // Fetch employees from database
+  useEffect(() => {
+    fetch("http://localhost:3001/api/employees")
+      .then((res) => res.json())
+      .then((data) => setEmployees(data));
+  }, []);
 
   // To format names properly (capitalize first letter, might add to utils later)
   function capitalize(str) {
