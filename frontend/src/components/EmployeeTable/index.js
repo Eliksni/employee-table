@@ -104,11 +104,11 @@ export default function EmployeeTable() {
   }
 
   return (
-    <>
-      <h1>EMPLOYEES</h1>
-      <ul>
+    <div className="bg-gray-200/90 w-2/3 p-4 rounded-2xl border-2 border-gray-800 shadow-lg backdrop-filter backdrop-blur-lg backdrop-opacity-50">
+      <h1 className="text-xl my-4 font-bold tracking-wide">EMPLOYEES</h1>
+      <ul className="border border-gray-400 rounded-lg p-4">
         <EmployeeRowHeader />
-        <hr />
+        <hr className="h-px my-4 bg-gray-500 border-0" />
         {employees.map((employee) => {
           if (employee === editEmployee) {
             return (
@@ -130,9 +130,9 @@ export default function EmployeeTable() {
             );
           }
         })}
+        <hr className="h-px my-4 bg-gray-500 border-0" />
         <EmployeeRowAdd handleAddEmployee={handleAddEmployee} />
       </ul>
-      <hr />
-    </>
+    </div>
   );
 }
