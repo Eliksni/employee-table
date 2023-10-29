@@ -96,6 +96,14 @@ router.put("/:id", async (req, res) => {
 
 // DELETE /employees/:id
 // Delete an employee from the database
-router.delete("/:id", (req, res) => {});
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  await prisma.employee.delete({
+    where: {
+      id: parseInt(id),
+    },
+  });
+});
 
 module.exports = router;

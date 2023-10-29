@@ -17,6 +17,10 @@ export default function EmployeeTable() {
   }, []);
 
   function handleDeleteEmployee(employee) {
+    fetch(`http://localhost:3001/api/employees/${employee.id}`, {
+      method: "DELETE",
+    });
+
     const updatedList = employees.filter((emp) => emp.id !== employee.id);
     setEmployees(updatedList);
   }
