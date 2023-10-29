@@ -11,13 +11,13 @@ export default function EmployeeTable() {
 
   // Fetch employees from database
   useEffect(() => {
-    fetch("http://localhost:3001/api/employees")
+    fetch("/api/employees")
       .then((res) => res.json())
       .then((data) => setEmployees(data));
   }, []);
 
   function handleDeleteEmployee(employee) {
-    fetch(`http://localhost:3001/api/employees/${employee.id}`, {
+    fetch(`/api/employees/${employee.id}`, {
       method: "DELETE",
     });
 
@@ -62,7 +62,7 @@ export default function EmployeeTable() {
     // If employee is new, POST to /employees/new
     // If employee is existing, PUT to /employees/:id
     if (editEmployee === newEmployee) {
-      fetch("http://localhost:3001/api/employees/new", {
+      fetch("/api/employees/new", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -71,7 +71,7 @@ export default function EmployeeTable() {
       });
       setNewEmployee(null);
     } else {
-      fetch(`http://localhost:3001/api/employees/${editEmployee.id}`, {
+      fetch(`/api/employees/${editEmployee.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

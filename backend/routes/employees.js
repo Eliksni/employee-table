@@ -58,7 +58,6 @@ router.post("/new", async (req, res) => {
     return;
   }
 
-  console.log("newEmployee", newEmployee);
   // Add employee to database
   await prisma.employee.create({
     data: newEmployee,
@@ -78,8 +77,6 @@ router.put("/:id", async (req, res) => {
     lastName: capitalize(lastName),
     salary: parseInt(salary),
   };
-
-  console.log("editEmployee", editEmployee);
 
   if (!validateEmployee(editEmployee)) {
     return;
