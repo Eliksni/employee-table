@@ -16,11 +16,6 @@ export default function EmployeeTable() {
       .then((data) => setEmployees(data));
   }, []);
 
-  // To format names properly (capitalize first letter, might add to utils later)
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   function handleDeleteEmployee(employee) {
     const updatedList = employees.filter((emp) => emp.id !== employee.id);
     setEmployees(updatedList);
@@ -54,10 +49,33 @@ export default function EmployeeTable() {
       return;
     }
 
-    // Update employee and capitalize name
-    editEmployee.firstName = capitalize(formData.firstName);
-    editEmployee.lastName = capitalize(formData.lastName);
+    // Update employee
+    editEmployee.firstName = formData.firstName;
+    editEmployee.lastName = formData.lastName;
     editEmployee.salary = formData.salary;
+
+    //POST to backend
+    // If employee is new, POST to /employees/new
+    // If employee is existing, PUT to /employees/:id
+    if (editEmployee === newEmployee) {
+      fetch("http://localhost:3001/api/employees/new", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editEmployee),
+      });
+      setNewEmployee(null);
+    } else {
+      fetch(`http://localhost:3001/api/employees/${editEmployee.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(editEmployee),
+      });
+    }
+
     setEditEmployee(null);
   }
 
