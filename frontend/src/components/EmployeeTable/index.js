@@ -22,6 +22,11 @@ export default function EmployeeTable() {
   const [editEmployee, setEditEmployee] = useState(null);
   const [newEmployee, setNewEmployee] = useState(null); // Used to track new employee in case of cancel (deletes and doesn't save to DB)
 
+  // To format names properly (capitalize first letter, might add to utils later)
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   function handleDeleteEmployee(employee) {
     const updatedList = employees.filter((emp) => emp.id !== employee.id);
     setEmployees(updatedList);
@@ -35,17 +40,29 @@ export default function EmployeeTable() {
     const { firstName, lastName, salary } = formData;
 
     // Validate form data
+    //All fields must be filled out
     if (!firstName || !lastName || !salary) {
       alert("Please fill out all fields");
       return;
     }
+    // First and last name must be letters only
+    if (!firstName.match(/^[a-zA-Z]+$/)) {
+      alert("Please enter a valid first name");
+      return;
+    }
+    if (!lastName.match(/^[a-zA-Z]+$/)) {
+      alert("Please enter a valid last name");
+      return;
+    }
+    // Salary must be a number greater than 0
     if (isNaN(salary) || salary < 0) {
       alert("Please enter a valid salary");
       return;
     }
 
-    editEmployee.firstName = formData.firstName;
-    editEmployee.lastName = formData.lastName;
+    // Update employee and capitalize name
+    editEmployee.firstName = capitalize(formData.firstName);
+    editEmployee.lastName = capitalize(formData.lastName);
     editEmployee.salary = formData.salary;
     setEditEmployee(null);
   }
