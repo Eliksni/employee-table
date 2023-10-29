@@ -19,7 +19,9 @@ export default function EmployeeTable() {
             "salary": 70000
         }
     ]);
-    const [editEmployee, setEditEmployee] = useState(null);
+    const [editEmployee, setEditEmployee] = useState(null); 
+    const [newEmployee, setNewEmployee] = useState(null); // Used to track new employee in case of cancel (deletes and doesn't save to DB)
+
 
     function handleDeleteEmployee(employee) {
         const updatedList = employees.filter((emp) => emp.id !== employee.id);
@@ -31,7 +33,18 @@ export default function EmployeeTable() {
     }
 
     function handleSubmitEdit(employee, formData) {
-        console.log(formData) 
+        const { firstName, lastName, salary } = formData;
+
+        // Validate form data
+        if (!firstName || !lastName || !salary) {
+            alert('Please fill out all fields');
+            return;
+        }
+        if (isNaN(salary) || salary < 0) {
+            alert('Please enter a valid salary');
+            return;
+        }
+
         editEmployee.firstName = formData.firstName;
         editEmployee.lastName = formData.lastName;
         editEmployee.salary = formData.salary;
@@ -39,18 +52,23 @@ export default function EmployeeTable() {
     }
 
     function handleCancelEdit(employee) {
+        if(employee === newEmployee) {
+            const updatedList = employees.filter((emp) => emp.id !== employee.id);
+            setEmployees(updatedList);
+        }
         setEditEmployee(null);
     }
 
     function handleAddEmployee() {
         const newEmployee = {
             "id": employees.length + 1,
-            "firstName": "",
-            "lastName": "",
+            "firstName": null,
+            "lastName": null,
             "salary": null
         }
         setEmployees([...employees, newEmployee]);
-        setEditEmployee(newEmployee)
+        setEditEmployee(newEmployee);
+        setNewEmployee(newEmployee)
     }
 
     return (
