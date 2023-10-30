@@ -30,6 +30,8 @@ Please reach out to me with any questions
 
 # My Implementation
 
+![](implementation.png)
+
 For this task, I used a React/Tailwind frontend with a Nodejs/Expressjs backend interfacing with a SQLite database using the ORM Prisma. I skewed away from the design example followed and went with my own as allowed. Everytime I had a new feature or a bug fix/type I commited to the main branch of the repo. In a real world scenario working on a team I would first create a branch, though since I was working on this alone I decided that feature branches would be a bit much (though if I was going to experiment on changing something that already works I would do a branch then). 
 
 ## How to run
