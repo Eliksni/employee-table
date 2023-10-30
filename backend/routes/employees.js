@@ -65,11 +65,11 @@ router.post("/new", async (req, res) => {
       data: newEmployee,
     })
     .catch((err) => {
-      res.status(400).json({ error: "Error creating new employee" });
+      res.status(500).json({ error: "Error creating new employee" });
       return;
     });
 
-  res.sendStatus(200);
+  res.sendStatus(201);
 });
 
 // PUT /employees/:id
@@ -99,7 +99,7 @@ router.put("/:id", async (req, res) => {
       data: editEmployee,
     })
     .catch((err) => {
-      res.status(400).json({ error: "Employee does not exist" });
+      res.status(500).json({ error: "Error creating new employee" });
       return;
     });
 
@@ -119,7 +119,7 @@ router.delete("/:id", async (req, res) => {
       },
     })
     .catch((err) => {
-      res.status(400).json({ error: "Employee does not exist" });
+      res.status(500).json({ error: "Error creating new employee" });
       return;
     });
 
