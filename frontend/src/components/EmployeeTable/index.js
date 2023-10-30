@@ -87,6 +87,7 @@ export default function EmployeeTable() {
     if (employee === newEmployee) {
       const updatedList = employees.filter((emp) => emp.id !== employee.id);
       setEmployees(updatedList);
+      setNewEmployee(null);
     }
     setEditEmployee(null);
   }
