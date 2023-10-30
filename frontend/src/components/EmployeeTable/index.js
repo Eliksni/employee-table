@@ -104,7 +104,7 @@ export default function EmployeeTable() {
   }
 
   return (
-    <div className="bg-gray-200/90 w-2/3 p-4 rounded-2xl border-2 border-gray-800 shadow-lg backdrop-filter backdrop-blur-lg backdrop-opacity-50">
+    <div className="bg-gray-50/90 w-2/3 p-4 rounded-2xl border-2 border-gray-800 shadow-lg backdrop-filter backdrop-blur-lg backdrop-opacity-50">
       <h1 className="text-xl my-4 font-bold tracking-wide">EMPLOYEES</h1>
       <ul className="border border-gray-400 rounded-lg p-4">
         <EmployeeRowHeader />
