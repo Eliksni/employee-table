@@ -112,11 +112,16 @@ router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(req.params);
 
-  await prisma.employee.delete({
-    where: {
-      id: parseInt(id),
-    },
-  });
+  await prisma.employee
+    .delete({
+      where: {
+        id: parseInt(id),
+      },
+    })
+    .catch((err) => {
+      res.status(400).json({ error: "Employee does not exist" });
+      return;
+    });
 
   res.sendStatus(200);
 });
