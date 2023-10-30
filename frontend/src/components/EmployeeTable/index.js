@@ -92,15 +92,19 @@ export default function EmployeeTable() {
   }
 
   function handleAddEmployee() {
-    const newEmployee = {
+    if (newEmployee !== null) {
+      alert("Please finish editing the new employee first");
+      return;
+    }
+    const tempEmployee = {
       id: employees[employees.length - 1].id + 1,
       firstName: null,
       lastName: null,
       salary: null,
     };
-    setEmployees([...employees, newEmployee]);
-    setEditEmployee(newEmployee);
-    setNewEmployee(newEmployee);
+    setEmployees([...employees, tempEmployee]);
+    setEditEmployee(tempEmployee);
+    setNewEmployee(tempEmployee);
   }
 
   return (
