@@ -39,7 +39,7 @@ function validateEmployee(employee) {
 // Retrieve all employees from the database
 router.get("/", async (req, res) => {
   const employees = await prisma.employee.findMany();
-  res.json(employees);
+  res.json(employees).status(200);
 });
 
 // POST /employees/new
@@ -60,9 +60,16 @@ router.post("/new", async (req, res) => {
   }
 
   // Add employee to database
-  await prisma.employee.create({
-    data: newEmployee,
-  });
+  await prisma.employee
+    .create({
+      data: newEmployee,
+    })
+    .catch((err) => {
+      res.status(400).json({ error: "Error creating new employee" });
+      return;
+    });
+
+  res.sendStatus(200);
 });
 
 // PUT /employees/:id
@@ -84,24 +91,34 @@ router.put("/:id", async (req, res) => {
   }
 
   // Update employee in database
-  await prisma.employee.update({
-    where: {
-      id: editEmployee.id,
-    },
-    data: editEmployee,
-  });
+  await prisma.employee
+    .update({
+      where: {
+        id: editEmployee.id,
+      },
+      data: editEmployee,
+    })
+    .catch((err) => {
+      res.status(400).json({ error: "Employee does not exist" });
+      return;
+    });
+
+  res.sendStatus(200);
 });
 
 // DELETE /employees/:id
 // Delete an employee from the database
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log(req.params);
 
   await prisma.employee.delete({
     where: {
       id: parseInt(id),
     },
   });
+
+  res.sendStatus(200);
 });
 
 module.exports = router;

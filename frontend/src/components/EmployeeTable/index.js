@@ -17,6 +17,7 @@ export default function EmployeeTable() {
   }, []);
 
   function handleDeleteEmployee(employee) {
+    console.log(employee);
     fetch(`/api/employees/${employee.id}`, {
       method: "DELETE",
     });
