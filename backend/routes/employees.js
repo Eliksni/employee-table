@@ -27,8 +27,8 @@ function validateEmployee(employee) {
     res.status(400).json({ error: "Please enter a valid last name" });
     return false;
   }
-  // Salary must be a number greater than 0
-  if (isNaN(salary) || salary < 0) {
+  // Salary must be a number greater than 0 and less than the max safe integer
+  if (isNaN(salary) || salary < 0 || salary > Number.MAX_SAFE_INTEGER) {
     res.status(400).json({ error: "Please enter a valid salary" });
     return false;
   }

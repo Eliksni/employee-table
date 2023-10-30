@@ -16,6 +16,7 @@ export default function EmployeeTable() {
       .then((data) => setEmployees(data));
   }, []);
 
+  // Activates after clicking "Delete" button
   function handleDeleteEmployee(employee) {
     if (newEmployee !== null) {
       alert("Please finish editing the new employee first");
@@ -30,6 +31,7 @@ export default function EmployeeTable() {
     setEmployees(updatedList);
   }
 
+  // Activates after clicking "Edit" button
   function handleEditEmployee(employee) {
     if (newEmployee !== null) {
       alert("Please finish editing the new employee first");
@@ -39,6 +41,7 @@ export default function EmployeeTable() {
     setEditEmployee(employee);
   }
 
+  // Activates after clicking "Save" button
   function handleSubmitEdit(employee, formData) {
     const { firstName, lastName, salary } = formData;
 
@@ -57,8 +60,8 @@ export default function EmployeeTable() {
       alert("Please enter a valid last name");
       return;
     }
-    // Salary must be a number greater than 0
-    if (isNaN(salary) || salary < 0) {
+    // Salary must be a number greater than 0 and less than the max safe integer
+    if (isNaN(salary) || salary < 0 || salary > Number.MAX_SAFE_INTEGER) {
       alert("Please enter a valid salary");
       return;
     }
@@ -93,6 +96,7 @@ export default function EmployeeTable() {
     setEditEmployee(null);
   }
 
+  // Activates after clicking "Cancel" button
   function handleCancelEdit(employee) {
     if (employee === newEmployee) {
       const updatedList = employees.filter((emp) => emp.id !== employee.id);
@@ -102,6 +106,7 @@ export default function EmployeeTable() {
     setEditEmployee(null);
   }
 
+  // Activates after clicking "Add Employee" button
   function handleAddEmployee() {
     if (newEmployee !== null) {
       alert("Please finish editing the new employee first");
@@ -127,6 +132,7 @@ export default function EmployeeTable() {
     setNewEmployee(tempEmployee);
   }
 
+  // TODO: Might make the buttons themselves into subcomponents with color, text, and onClick as props
   return (
     <div className="bg-gray-50/90 w-2/3 p-4 rounded-2xl border-2 border-gray-800 shadow-lg backdrop-filter backdrop-blur-lg backdrop-opacity-50">
       <h1 className="text-xl my-4 font-bold tracking-wide">EMPLOYEES</h1>
