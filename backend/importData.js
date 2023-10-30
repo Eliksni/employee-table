@@ -6,12 +6,14 @@ const prisma = new PrismaClient();
 
 const data = require("../data.json");
 console.log(data);
+let id = 1;
 
 async function main({ employees }) {
   for (const employee of employees) {
     const { firstName, lastName, salary } = employee;
     await prisma.employee.create({
       data: {
+        id: id++,
         firstName,
         lastName,
         salary,

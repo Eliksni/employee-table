@@ -97,12 +97,21 @@ export default function EmployeeTable() {
       alert("Please finish editing the new employee first");
       return;
     }
+
+    let id;
+    // If no employees, set id to 1
+    if (employees.length === 0) {
+      id = 1;
+    } else {
+      id = employees[employees.length - 1].id + 1;
+    }
     const tempEmployee = {
-      id: employees[employees.length - 1].id + 1,
+      id: id,
       firstName: null,
       lastName: null,
       salary: null,
     };
+
     setEmployees([...employees, tempEmployee]);
     setEditEmployee(tempEmployee);
     setNewEmployee(tempEmployee);
