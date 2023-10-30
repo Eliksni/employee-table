@@ -17,7 +17,11 @@ export default function EmployeeTable() {
   }, []);
 
   function handleDeleteEmployee(employee) {
-    console.log(employee);
+    if (newEmployee !== null) {
+      alert("Please finish editing the new employee first");
+      return;
+    }
+
     fetch(`/api/employees/${employee.id}`, {
       method: "DELETE",
     });
@@ -27,6 +31,11 @@ export default function EmployeeTable() {
   }
 
   function handleEditEmployee(employee) {
+    if (newEmployee !== null) {
+      alert("Please finish editing the new employee first");
+      return;
+    }
+
     setEditEmployee(employee);
   }
 
