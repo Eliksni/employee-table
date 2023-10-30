@@ -45,10 +45,11 @@ router.get("/", async (req, res) => {
 // POST /employees/new
 // Create a new employee in the database
 router.post("/new", async (req, res) => {
-  const { firstName, lastName, salary } = req.body;
+  const { id, firstName, lastName, salary } = req.body;
 
   // Create employee and capitalize name
   const newEmployee = {
+    id: parseInt(id),
     firstName: capitalize(firstName),
     lastName: capitalize(lastName),
     salary: parseInt(salary),

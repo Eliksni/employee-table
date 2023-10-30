@@ -93,7 +93,7 @@ export default function EmployeeTable() {
 
   function handleAddEmployee() {
     const newEmployee = {
-      id: employees.length + 1,
+      id: employees[employees.length - 1].id + 1,
       firstName: null,
       lastName: null,
       salary: null,
